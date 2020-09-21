@@ -15,7 +15,7 @@ public class PlayerController2 : MonoBehaviour
 
     public Transform groundCheck;
     public float checkRadius;
-    public LayerMask whatisgrounded;
+    public LayerMask whatisgrounded; 
 
     private int extraJumps;
     public int extraJumpValue = 2;
@@ -26,7 +26,7 @@ public class PlayerController2 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     void FixedUpdate() {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatisgrounded);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatisgrounded); // anything in radius will decide if character is on ground 
 
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
@@ -69,10 +69,10 @@ public class PlayerController2 : MonoBehaviour
     }
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
+        // If isRight is true make it false and vice versa
         isRight = !isRight;
 
-        // Multiply the player's x local scale by -1.
+        // Multiply the player's x local scale by -1 to flip
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
